@@ -26,7 +26,6 @@ const Skills = () => {
   const skillsChunks = chunkArray(Images, 4);
 
   const handleSkillClick = (skill: Skill) => {
-    console.log(skill);
     setSelectedSkill(skill);
   };
 

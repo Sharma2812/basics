@@ -10,6 +10,8 @@ const StyledLink = styled(Link)`
 `;
 
 const Navbar = () => {
+  const email = "sujithsharma69@gmail.com";
+
   return (
     <>
       <Box
@@ -17,17 +19,34 @@ const Navbar = () => {
           backgroundColor: "#003366",
           color: "white",
           display: "flex",
-          justifyContent: "flex-end",
-          gap: 5,
+          justifyContent: "space-between",
+          alignItems: "center",
           py: 3,
+          px: 5,
         }}
       >
-        <StyledLink to={"/work"}>Works</StyledLink>
-        <StyledLink to={"/services"}>Services</StyledLink>
-        <StyledLink to={"/skills"}>Skills</StyledLink>
-        <StyledLink to={"/resume"}>Resume</StyledLink>
-        <StyledLink to={"/contact"}>Contact</StyledLink>
-        <StyledLink to={""}>Hire me</StyledLink>
+        <Box>
+          <a
+            href={`mailto:${email}`}
+            style={{ color: "white", textDecoration: "none" }}
+          >
+            {email}
+          </a>
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            gap: 5,
+          }}
+        >
+          <StyledLink to={"/work"}>Works</StyledLink>
+          <StyledLink to={"/services"}>Services</StyledLink>
+          <StyledLink to={"/skills"}>Skills</StyledLink>
+          <StyledLink to={"/resume"}>Resume</StyledLink>
+          <StyledLink to={"/contact"}>Contact</StyledLink>
+          <StyledLink to={""}>Hire me</StyledLink>
+        </Box>
       </Box>
       <Outlet />
     </>

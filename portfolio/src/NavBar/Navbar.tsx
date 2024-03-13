@@ -1,7 +1,7 @@
 import { Box, styled } from "@mui/material";
 import { Link, Outlet } from "react-router-dom";
 
-const StyledButton = styled(Link)`
+const StyledLink = styled(Link)`
   color: inherit;
   text-decoration: none;
   &:hover {
@@ -14,7 +14,7 @@ const Navbar = () => {
     <>
       <Box
         sx={{
-          backgroundColor: "black",
+          backgroundColor: "#003366", 
           color: "white",
           display: "flex",
           justifyContent: "flex-end",
@@ -22,11 +22,12 @@ const Navbar = () => {
           py: 3,
         }}
       >
-        <StyledButton to={"/work"}>Works</StyledButton>
-        <StyledButton to={"/services"}>Services</StyledButton>
-        <StyledButton to={"/resume"}>Resume</StyledButton>
-        <StyledButton to={"/contact"}>Contact</StyledButton>
-        <StyledButton to={""}>Hire me</StyledButton>
+        <StyledLink to={"/work"}>Works</StyledLink>
+        <StyledLink to={"/services"}>Services</StyledLink>
+        <StyledLink to={"/skills"}>Skills</StyledLink>
+        <StyledLink to={"/resume"}>Resume</StyledLink>
+        <StyledLink to={"/contact"}>Contact</StyledLink>
+        <StyledLink to={""}>Hire me</StyledLink>
       </Box>
       <Outlet />
     </>

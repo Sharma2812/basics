@@ -1,16 +1,13 @@
 import { Modal, Box, Typography, Rating, IconButton } from "@mui/material";
 import { Close } from "@mui/icons-material";
+import { Skill } from "../dataType/Type";
 
-interface Skill {
-  image: string;
-  title: string;
-  rating: number;
-  description: string;
-}
+
 interface SkillsModalProps {
   selectedSkill: Skill | null;
   handleModalClose: () => void;
 }
+
 const SkillsModal: React.FC<SkillsModalProps> = ({
   selectedSkill,
   handleModalClose,

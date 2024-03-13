@@ -1,5 +1,5 @@
 import html5Image from "../assets/html5.png";
-import css3Image from "../assets/css3.jpg";
+import css3Image from "../assets/css.png";
 import reactImage from "../assets/react.jpg";
 import jsImage from "../assets/js.png";
 import typescriptImage from "../assets/typescript.png";

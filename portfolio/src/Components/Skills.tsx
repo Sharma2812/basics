@@ -10,13 +10,7 @@ import {
 import { Rating } from "@mui/material";
 import { Images } from "../datas/SkillsData";
 import SkillsModal from "../Modals/SkillsModal";
-
-interface Skill {
-  image: string;
-  title: string;
-  rating: number;
-  description: string;
-}
+import { Skill } from "../dataType/Type";
 
 const chunkArray = (arr: Skill[], size: number) => {
   const chunkedArr = [];
@@ -31,7 +25,7 @@ const Skills = () => {
   const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
   const skillsChunks = chunkArray(Images, 4);
 
-  const handleSkillClick = (skill:Skill) => {
+  const handleSkillClick = (skill: Skill) => {
     console.log(skill);
     setSelectedSkill(skill);
   };
@@ -48,7 +42,7 @@ const Skills = () => {
           display="flex"
           justifyContent="space-evenly"
           sx={{
-            backgroundColor: "#00008B",
+            backgroundImage: "linear-gradient(to right, #00008B, #00BFFF)",
             paddingTop: "30px",
             paddingBottom: "30px",
           }}
@@ -57,8 +51,11 @@ const Skills = () => {
             <Card
               sx={{
                 maxWidth: 300,
+                backgroundColor: "#ddd",
                 border: "2px solid transparent",
+                transition: "background-color 0.3s",
                 "&:hover": {
+                  backgroundColor: "#fff",
                   border: "2px solid #000",
                 },
               }}

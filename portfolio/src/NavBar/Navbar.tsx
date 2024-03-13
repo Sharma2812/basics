@@ -14,7 +14,7 @@ const Navbar = () => {
     <>
       <Box
         sx={{
-          backgroundColor: "#003366", 
+          backgroundColor: "#003366",
           color: "white",
           display: "flex",
           justifyContent: "flex-end",

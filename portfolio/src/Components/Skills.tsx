@@ -6,13 +6,19 @@ import {
   CardHeader,
   CardMedia,
   Typography,
-  Modal,
 } from "@mui/material";
 import { Rating } from "@mui/material";
 import { Images } from "../datas/SkillsData";
 import SkillsModal from "../Modals/SkillsModal";
 
-const chunkArray = (arr, size) => {
+interface Skill {
+  image: string;
+  title: string;
+  rating: number;
+  description: string;
+}
+
+const chunkArray = (arr: Skill[], size: number) => {
   const chunkedArr = [];
   for (let i = 0; i < arr.length; i += size) {
     chunkedArr.push(arr.slice(i, i + size));
@@ -22,10 +28,11 @@ const chunkArray = (arr, size) => {
 
 const Skills = () => {
   const [expandedIndices] = useState(Array(Images.length).fill(false));
-  const [selectedSkill, setSelectedSkill] = useState(null);
+  const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
   const skillsChunks = chunkArray(Images, 4);
 
-  const handleSkillClick = (skill) => {
+  const handleSkillClick = (skill:Skill) => {
+    console.log(skill);
     setSelectedSkill(skill);
   };
 

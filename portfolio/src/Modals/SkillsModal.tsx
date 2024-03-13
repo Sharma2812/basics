@@ -1,7 +1,22 @@
 import { Modal, Box, Typography, Rating, IconButton } from "@mui/material";
 import { Close } from "@mui/icons-material";
 
-const SkillsModal = ({ selectedSkill, handleModalClose }) => {
+interface Skill {
+  image: string;
+  title: string;
+  rating: number;
+  description: string;
+}
+interface SkillsModalProps {
+  selectedSkill: Skill | null;
+  handleModalClose: () => void;
+}
+const SkillsModal: React.FC<SkillsModalProps> = ({
+  selectedSkill,
+  handleModalClose,
+}) => {
+  console.log(selectedSkill);
+  console.log(handleModalClose);
   return (
     <Modal
       open={selectedSkill !== null}
@@ -22,10 +37,17 @@ const SkillsModal = ({ selectedSkill, handleModalClose }) => {
           maxHeight: "80%",
           overflowY: "auto",
           borderRadius: 8,
-          textAlign: "center", 
+          textAlign: "center",
         }}
       >
-        <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            mb: 2,
+          }}
+        >
           <Typography variant="h4" id="skills-modal-title">
             {selectedSkill?.title}
           </Typography>

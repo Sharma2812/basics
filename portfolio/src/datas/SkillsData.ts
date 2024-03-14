@@ -6,6 +6,10 @@ import typescriptImage from "../assets/typescript.png";
 import reduxToolkitImage from "../assets/redux.png";
 import bootstrapImage from "../assets/bootstrap.jpeg";
 import unitTestingImage from "../assets/unittesting.png";
+import jqueryImage from "../assets/jquery.png";
+import formikImage from "../assets/formik.png";
+import ajaxImage from "../assets/ajax.png";
+import cypressImage from "../assets/cypress.jpeg";
 
 export const Images = [
   {
@@ -63,5 +67,33 @@ export const Images = [
     rating: 4,
     description:
       "Proficiency in unit testing JavaScript applications using frameworks like Jest, and Cypress. Experienced in writing test cases, mocking dependencies, and ensuring code quality through automated testing.",
+  },
+  {
+    image: jqueryImage,
+    title: "jQuery",
+    rating: 3,
+    description:
+      "Experience with jQuery, a fast, small, and feature-rich JavaScript library. Proficient in DOM manipulation, event handling, and AJAX requests, facilitating easier traversal and manipulation of HTML documents.",
+  },
+  {
+    image: formikImage,
+    title: "Formik",
+    rating: 3,
+    description:
+      "Proficiency in Formik, a popular form library for React and React Native. Skilled in managing form state, validation, and submission, providing a simpler and more predictable way to work with forms in React applications.",
+  },
+  {
+    image: ajaxImage,
+    title: "AJAX",
+    rating: 3,
+    description:
+      "Experience with AJAX (Asynchronous JavaScript and XML) for making asynchronous HTTP requests from the browser. Proficient in utilizing AJAX to fetch data from servers and update parts of a web page without reloading the entire page.",
+  },
+  {
+    image: cypressImage,
+    title: "Cypress Testing",
+    rating: 3,
+    description:
+      "Experience with Cypress, a modern end-to-end testing framework for web applications. Proficient in writing and running automated tests, performing assertions, and debugging, ensuring the quality and reliability of web applications.",
   },
 ];

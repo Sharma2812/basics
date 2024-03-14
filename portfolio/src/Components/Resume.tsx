@@ -3,7 +3,7 @@ import { educationQualification } from "../datas/EducationData";
 import { experienceData } from "../datas/ExperienceData";
 
 // Styled Card component with hover effect
-const StyledCard = styled(Card)(({ theme }) => ({
+const StyledCard = styled(Card)(() => ({
   backgroundColor: "#003366",
   boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
   marginBottom: 20,
@@ -14,7 +14,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
   },
 }));
 
-const GradientTypography = styled(Typography)(({ theme }) => ({
+const GradientTypography = styled(Typography)(() => ({
   backgroundImage: "linear-gradient(to right, #FFFFFF, #ADD8E6)", // Adjusted gradient
   backgroundClip: "text",
   color: "transparent",

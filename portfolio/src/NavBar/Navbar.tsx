@@ -41,7 +41,6 @@ const Navbar = () => {
           }}
         >
           <StyledLink to={"/about"}>About</StyledLink>
-          <StyledLink to={"/services"}>Services</StyledLink>
           <StyledLink to={"/skills"}>Skills</StyledLink>
           <StyledLink to={"/resume"}>Resume</StyledLink>
           <StyledLink to={"/contact"}>Contact</StyledLink>

@@ -1,7 +1,7 @@
 import { Box, styled } from "@mui/material";
 import { Link, Outlet } from "react-router-dom";
 
-const StyledButton = styled(Link)`
+const StyledLink = styled(Link)`
   color: inherit;
   text-decoration: none;
   &:hover {
@@ -10,23 +10,43 @@ const StyledButton = styled(Link)`
 `;
 
 const Navbar = () => {
+  const email = "sujithsharma69@gmail.com";
+
   return (
     <>
       <Box
         sx={{
-          backgroundColor: "black",
+          backgroundColor: "#003366",
           color: "white",
           display: "flex",
-          justifyContent: "flex-end",
-          gap: 5,
+          justifyContent: "space-between",
+          alignItems: "center",
           py: 3,
+          px: 5,
         }}
       >
-        <StyledButton to={"/work"}>Works</StyledButton>
-        <StyledButton to={"/services"}>Services</StyledButton>
-        <StyledButton to={"/resume"}>Resume</StyledButton>
-        <StyledButton to={"/contact"}>Contact</StyledButton>
-        <StyledButton to={""}>Hire me</StyledButton>
+        <Box>
+          <a
+            href={`mailto:${email}`}
+            style={{ color: "white", textDecoration: "none" }}
+          >
+            {email}
+          </a>
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            gap: 5,
+          }}
+        >
+          <StyledLink to={"/about"}>About</StyledLink>
+          <StyledLink to={"/services"}>Services</StyledLink>
+          <StyledLink to={"/skills"}>Skills</StyledLink>
+          <StyledLink to={"/resume"}>Resume</StyledLink>
+          <StyledLink to={"/contact"}>Contact</StyledLink>
+          <StyledLink to={""}>Hire me</StyledLink>
+        </Box>
       </Box>
       <Outlet />
     </>

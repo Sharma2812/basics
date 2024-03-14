@@ -3,7 +3,7 @@ export const experienceData = {
     thirdCompany: {
       year: "June-2023 - Present (10months)",
       name: "Software Developer",
-      company: "Sumanas Technologies",
+      company: "Sumanas Technologies Pvt Ltd",
       city: "Coimbatore",
     },
     secondCompany: {
@@ -15,7 +15,7 @@ export const experienceData = {
     firstCompany: {
       year: "Dec-2021 - Feb-2022 (3 Months)",
       name: "Python Developer Intern",
-      company: "Episyche Technologies",
+      company: "Episyche Technologies Pvt Ltd",
       city: "Coimbatore",
     },
   },

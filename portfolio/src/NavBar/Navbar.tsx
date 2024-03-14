@@ -1,5 +1,6 @@
 import { Box, styled } from "@mui/material";
 import { Link, Outlet } from "react-router-dom";
+import About from "../Components/About";
 
 const StyledLink = styled(Link)`
   color: inherit;
@@ -40,7 +41,7 @@ const Navbar = () => {
             gap: 5,
           }}
         >
-          <StyledLink to={"/work"}>Works</StyledLink>
+          <StyledLink to={"/about"}>About</StyledLink>
           <StyledLink to={"/services"}>Services</StyledLink>
           <StyledLink to={"/skills"}>Skills</StyledLink>
           <StyledLink to={"/resume"}>Resume</StyledLink>

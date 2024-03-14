@@ -1,6 +1,5 @@
 import { Box, styled } from "@mui/material";
 import { Link, Outlet } from "react-router-dom";
-import About from "../Components/About";
 
 const StyledLink = styled(Link)`
   color: inherit;

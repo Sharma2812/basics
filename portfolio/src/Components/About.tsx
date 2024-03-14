@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { aboutData } from "../datas/AboutData";
-import photo from "../assets/photo.jpg";
+import photo from "../assets/photo.jpeg";
 const About = () => {
   return (
     <Box

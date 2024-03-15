@@ -3,7 +3,6 @@ import Navbar from "../NavBar/Navbar";
 import About from "../Components/About";
 import Contact from "../Components/Contact";
 import Resume from "../Components/Resume";
-import Services from "../Components/Services";
 import Skills from "../Components/Skills";
 
 export const router = createBrowserRouter([
@@ -26,10 +25,6 @@ export const router = createBrowserRouter([
       {
         path: "resume",
         element: <Resume />,
-      },
-      {
-        path: "services",
-        element: <Services />,
       },
       {
         path: "skills",

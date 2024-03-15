@@ -1,12 +1,24 @@
 import { Box, Typography } from "@mui/material";
 import { aboutData } from "../datas/AboutData";
 import photo from "../assets/photo.jpeg";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import EmailIcon from "@mui/icons-material/Email";
+import { motion } from "framer-motion"; // Import motion from framer-motion
+
 const About = () => {
+  const handleLinkClick = (url: string) => {
+    window.open(url, "_blank");
+  };
+
   return (
-    <Box
-      sx={{
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      style={{
         display: "flex",
-        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
         height: "100vh",
@@ -25,8 +37,72 @@ const About = () => {
         <Typography variant="h5" gutterBottom>
           {aboutData.description}
         </Typography>
+        <Typography variant="h6" sx={{ color: "white", mb: 2 }}>
+          Connect with me:
+        </Typography>
+
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 2,
+          }}
+        >
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <LinkedInIcon
+              sx={{ color: "white", mr: 1, cursor: "pointer" }}
+              onClick={() =>
+                handleLinkClick("https://www.linkedin.com/in/sharma96/")
+              }
+            />
+            <Typography
+              variant="body1"
+              sx={{ color: "white", cursor: "pointer" }}
+              onClick={() =>
+                handleLinkClick("https://www.linkedin.com/in/sharma96/")
+              }
+            >
+              LinkedIn
+            </Typography>
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <InstagramIcon
+              sx={{ color: "white", mr: 1, cursor: "pointer" }}
+              onClick={() =>
+                handleLinkClick(
+                  "https://www.instagram.com/sujith_sharma69?igsh=MWZoeHhsejJ4dDkwcA=="
+                )
+              }
+            />
+            <Typography
+              variant="body1"
+              sx={{ color: "white", cursor: "pointer" }}
+              onClick={() =>
+                handleLinkClick(
+                  "https://www.instagram.com/sujith_sharma69?igsh=MWZoeHhsejJ4dDkwcA=="
+                )
+              }
+            >
+              Instagram
+            </Typography>
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <EmailIcon
+              sx={{ color: "white", mr: 1, cursor: "pointer" }}
+              onClick={() => handleLinkClick("mailto:sujithsharma69@gmail.com")}
+            />
+            <Typography
+              variant="body1"
+              sx={{ color: "white", cursor: "pointer" }}
+              onClick={() => handleLinkClick("mailto:sujithsharma69@gmail.com")}
+            >
+              Email
+            </Typography>
+          </Box>
+        </Box>
       </Box>
-    </Box>
+    </motion.div>
   );
 };
 

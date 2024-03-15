@@ -1,10 +1,8 @@
-import {
-  Box
-} from "@mui/material";
+import { Box } from "@mui/material";
 import Form from "../pages/Form";
+import ContactPage from "../pages/ContactPage";
 
 const Contact = () => {
-
   return (
     <Box
       sx={{
@@ -13,11 +11,10 @@ const Contact = () => {
         alignItems: "center",
         minHeight: "100vh",
         backgroundImage: "linear-gradient(to right, #00008B, #00BFFF)",
-
       }}
     >
       <Box sx={{ flex: 1, textAlign: "center" }}>
-        <h2>Let's talk</h2>
+        <ContactPage />
       </Box>
       <Box sx={{ flex: 1, display: "flex", justifyContent: "center" }}>
         <Form />

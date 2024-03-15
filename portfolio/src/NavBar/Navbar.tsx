@@ -62,7 +62,7 @@ const Navbar = () => {
           <StyledLink to={"/skills"}>Skills</StyledLink>
           <StyledLink to={"/resume"}>Resume</StyledLink>
           <StyledLink to={"/contact"}>Contact</StyledLink>
-          <StyledLink to={""}>Hire me</StyledLink>
+          <StyledLink to={"/contact"}>Hire me</StyledLink>
         </Box>
       </Box>
 
@@ -99,7 +99,7 @@ const Navbar = () => {
             <StyledLink to={"/contact"} onClick={handleAccordionChange}>
               Contact
             </StyledLink>
-            <StyledLink to={""} onClick={handleAccordionChange}>
+            <StyledLink to={"/contact"} onClick={handleAccordionChange}>
               Hire me
             </StyledLink>
           </Box>

@@ -2,6 +2,7 @@ import { Box, Card, CardContent, Typography, styled } from "@mui/material";
 import { educationQualification } from "../datas/EducationData";
 import { experienceData } from "../datas/ExperienceData";
 import { ExperienceOrQualification } from "../dataType/Type";
+import { motion } from "framer-motion"; // Import motion from framer-motion
 
 const StyledCard = styled(Card)(({ theme }) => ({
   backgroundColor: "#003366",
@@ -19,39 +20,52 @@ const GradientTypography = styled(Typography)({
   backgroundClip: "text",
   color: "transparent",
 });
+
+const StyledCardContent = styled(CardContent)({
+  display: "flex",
+  flexDirection: "column",
+  gap: 1,
+  justifyContent: "center",
+  alignItems: "center",
+  transition: "transform 0.3s ease",
+  "&:hover": {
+    transform: "scale(1.05)",
+  },
+});
+
 const titles = {
   education: "My Education",
   experience: "My Experience",
 };
+
 const Resume = () => {
   const renderCard = (data: Record<string, ExperienceOrQualification>) => {
-    console.log(data);
     return Object.keys(data).map((key, index) => {
       const { year, name, company, institution, city } = data[key];
       return (
-        <StyledCard key={index} variant="outlined">
-          <CardContent
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 1,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Typography sx={{ fontSize: 14, color: "white" }} gutterBottom>
-              {year}
-            </Typography>
-            <Typography sx={{ mb: 1.5, color: "white" }}>{name}</Typography>
-            <Typography variant="body2" sx={{ color: "white" }}>
-              {company || institution} <br />
-            </Typography>
-            <Typography variant="body2" sx={{ color: "white" }}>
-              {city}
-              <br />
-            </Typography>
-          </CardContent>
-        </StyledCard>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          key={index}
+        >
+          <StyledCard variant="outlined">
+            <StyledCardContent>
+              <Typography sx={{ fontSize: 14, color: "white" }} gutterBottom>
+                {year}
+              </Typography>
+              <Typography sx={{ mb: 1.5, color: "white" }}>{name}</Typography>
+              <Typography variant="body2" sx={{ color: "white" }}>
+                {company || institution} <br />
+              </Typography>
+              <Typography variant="body2" sx={{ color: "white" }}>
+                {city}
+                <br />
+              </Typography>
+            </StyledCardContent>
+          </StyledCard>
+        </motion.div>
       );
     });
   };

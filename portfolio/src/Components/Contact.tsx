@@ -1,23 +1,24 @@
 import { Box } from "@mui/material";
-import Form from "../pages/Form";
-import ContactPage from "../pages/ContactPage";
+import ContactForm from "../pages/ContactForm";
+import ContactContent from "../pages/ContactContent";
 
 const Contact = () => {
   return (
     <Box
       sx={{
         display: "flex",
+        flexDirection: { xs: "column", md: "row" },
         justifyContent: "space-between",
         alignItems: "center",
         minHeight: "100vh",
         backgroundImage: "linear-gradient(to right, #00008B, #00BFFF)",
       }}
     >
-      <Box sx={{ flex: 1, textAlign: "center" }}>
-        <ContactPage />
+      <Box sx={{ flex: 1, textAlign: "center", mb: { xs: 2, md: 0 } }}>
+        <ContactContent />
       </Box>
       <Box sx={{ flex: 1, display: "flex", justifyContent: "center" }}>
-        <Form />
+        <ContactForm />
       </Box>
     </Box>
   );

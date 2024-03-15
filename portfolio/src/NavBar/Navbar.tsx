@@ -34,19 +34,20 @@ const Navbar = () => {
 
   return (
     <>
+      {/* Conditional rendering of section based on screen size */}
       <Box
         sx={{
+          display: { xs: "none", md: "flex" },
           backgroundColor: "#003366",
           color: "white",
-          display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
           py: 3,
           px: 5,
         }}
       >
-        {/* Conditional rendering of email based on screen size */}
-        <Box sx={{ display: { xs: "none", md: "block" } }}>
+        {/* Email section */}
+        <Box>
           <a
             href={`mailto:${email}`}
             style={{ color: "white", textDecoration: "none" }}
@@ -56,12 +57,7 @@ const Navbar = () => {
         </Box>
 
         {/* Navigation Links */}
-        <Box
-          sx={{
-            display: { xs: "none", md: "flex" },
-            gap: 5,
-          }}
-        >
+        <Box sx={{ display: "flex", gap: 5 }}>
           <StyledLink to={"/about"}>About</StyledLink>
           <StyledLink to={"/skills"}>Skills</StyledLink>
           <StyledLink to={"/resume"}>Resume</StyledLink>

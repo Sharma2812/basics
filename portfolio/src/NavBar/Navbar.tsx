@@ -87,11 +87,21 @@ const Navbar = () => {
         </AccordionSummary>
         <AccordionDetails>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            <StyledLink to={"/about"}>About</StyledLink>
-            <StyledLink to={"/skills"}>Skills</StyledLink>
-            <StyledLink to={"/resume"}>Resume</StyledLink>
-            <StyledLink to={"/contact"}>Contact</StyledLink>
-            <StyledLink to={""}>Hire me</StyledLink>
+            <StyledLink to={"/about"} onClick={handleAccordionChange}>
+              About
+            </StyledLink>
+            <StyledLink to={"/skills"} onClick={handleAccordionChange}>
+              Skills
+            </StyledLink>
+            <StyledLink to={"/resume"} onClick={handleAccordionChange}>
+              Resume
+            </StyledLink>
+            <StyledLink to={"/contact"} onClick={handleAccordionChange}>
+              Contact
+            </StyledLink>
+            <StyledLink to={""} onClick={handleAccordionChange}>
+              Hire me
+            </StyledLink>
           </Box>
         </AccordionDetails>
       </CustomAccordion>

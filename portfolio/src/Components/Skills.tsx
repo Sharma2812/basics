@@ -14,7 +14,15 @@ import SkillsModal from "../Modals/SkillsModal";
 import { Skill } from "../dataType/Type";
 import { motion } from "framer-motion"; 
 
-const WavyCardMedia = styled(CardMedia)`
+// Define types for CardMedia props including 'component', 'height', and 'alt'
+type CardMediaProps = React.ComponentProps<typeof CardMedia> & {
+  component?: React.ElementType;
+  height?: string;
+  alt?: string;
+};
+
+// Create styled component for CardMedia with wavy animation
+const WavyCardMedia = styled(CardMedia)<CardMediaProps>`
   overflow: hidden;
   position: relative;
   transform-origin: 50% 50%;
@@ -35,6 +43,7 @@ const WavyCardMedia = styled(CardMedia)`
   }
 `;
 
+
 const chunkArray = (arr: Skill[], size: number) => {
   const chunkedArr = [];
   for (let i = 0; i < arr.length; i += size) {
@@ -46,20 +55,20 @@ const chunkArray = (arr: Skill[], size: number) => {
 const Skills = () => {
   const [expandedIndices] = useState(Array(Images.length).fill(false));
   const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
-  const [chunksPerRow, setChunksPerRow] = useState<number>(4); 
+  const [chunksPerRow, setChunksPerRow] = useState<number>(4); // Default for desktop
 
   useEffect(() => {
-    
+    // Check viewport width and set chunk size accordingly
     const handleResize = () => {
-      const isMobileView = window.innerWidth < 768; 
-      setChunksPerRow(isMobileView ? 1 : 4); 
+      const isMobileView = window.innerWidth < 768; // Example breakpoint for mobile
+      setChunksPerRow(isMobileView ? 1 : 4); // Change chunk size for mobile view
     };
 
-    handleResize(); 
-    window.addEventListener("resize", handleResize); 
+    handleResize(); // Call once on component mount
+    window.addEventListener("resize", handleResize); // Add event listener for window resize
 
     return () => {
-      window.removeEventListener("resize", handleResize); 
+      window.removeEventListener("resize", handleResize); // Cleanup on unmount
     };
   }, []);
 
@@ -108,7 +117,7 @@ const Skills = () => {
                 }}
               >
                 <CardHeader title={skill.title} sx={{ textAlign: "center" }} />
-                {/* Replace CardMedia with the styled component */}
+                {/* Use the styled component for CardMedia */}
                 <WavyCardMedia
                   component="img"
                   height="194"

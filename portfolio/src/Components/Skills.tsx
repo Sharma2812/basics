@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Box,
   Card,
@@ -24,7 +24,24 @@ const chunkArray = (arr: Skill[], size: number) => {
 const Skills = () => {
   const [expandedIndices] = useState(Array(Images.length).fill(false));
   const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
-  const skillsChunks = chunkArray(Images, 4);
+  const [chunksPerRow, setChunksPerRow] = useState<number>(4); // Default for desktop
+
+  useEffect(() => {
+    // Check viewport width and set chunk size accordingly
+    const handleResize = () => {
+      const isMobileView = window.innerWidth < 768; // Example breakpoint for mobile
+      setChunksPerRow(isMobileView ? 1 : 4); // Change chunk size for mobile view
+    };
+
+    handleResize(); // Call once on component mount
+    window.addEventListener("resize", handleResize); // Add event listener for window resize
+
+    return () => {
+      window.removeEventListener("resize", handleResize); // Cleanup on unmount
+    };
+  }, []);
+
+  const skillsChunks = chunkArray(Images, chunksPerRow);
 
   const handleSkillClick = (skill: Skill) => {
     setSelectedSkill(skill);
@@ -81,7 +98,7 @@ const Skills = () => {
                     color="text.secondary"
                     sx={{ overflowWrap: "anywhere", cursor: "pointer" }}
                   >
-                    {expandedIndices[rowIndex * 4 + index]
+                    {expandedIndices[rowIndex * chunksPerRow + index]
                       ? skill.description
                       : skill.description.slice(0, 100) + "..."}
                   </Typography>
@@ -90,7 +107,7 @@ const Skills = () => {
                       Rating:
                     </Typography>
                     <Rating
-                      name={`rating-${rowIndex * 4 + index}`}
+                      name={`rating-${rowIndex * chunksPerRow + index}`}
                       value={skill.rating}
                       readOnly
                     />

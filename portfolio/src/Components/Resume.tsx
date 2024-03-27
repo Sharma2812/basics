@@ -1,36 +1,28 @@
-import { Box, Card, CardContent, Typography, styled } from "@mui/material";
-import { educationQualification } from "../datas/EducationData";
+import { Box, Stack, Typography, styled, useMediaQuery } from '@mui/material';
 import { experienceData } from "../datas/ExperienceData";
-import { ExperienceOrQualification } from "../dataType/Type";
-import { motion } from "framer-motion"; // Import motion from framer-motion
+import { motion } from "framer-motion";
+import { educationQualification } from "../datas/EducationData";
 
-const StyledCard = styled(Card)(({ theme }) => ({
+
+const StyledBox = styled(Box)({
+  padding:20,
+  marginBottom: 2,
   backgroundColor: "#003366",
-  boxShadow: theme.shadows[2],
-  marginBottom: 20,
   transition: "background-color 0.5s ease-in-out",
+  textAlign: "center",
+  width: "90%",
+  maxWidth: "600px",
+  margin: "0 auto",
   "&:hover": {
     backgroundColor: "#0080ff",
     backgroundImage: "linear-gradient(to right, #00008B, #00BFFF)",
   },
-}));
-
-const GradientTypography = styled(Typography)({
-  backgroundImage: "linear-gradient(to right, #FFFFFF, #ADD8E6)",
-  backgroundClip: "text",
-  color: "transparent",
 });
 
-const StyledCardContent = styled(CardContent)({
-  display: "flex",
-  flexDirection: "column",
-  gap: 1,
-  justifyContent: "center",
-  alignItems: "center",
-  transition: "transform 0.3s ease",
-  "&:hover": {
-    transform: "scale(1.05)",
-  },
+const StyledTypography = styled(Typography)({
+  marginBottom: 2,
+  color: "white",
+  textAlign: "center",
 });
 
 const titles = {
@@ -39,85 +31,58 @@ const titles = {
 };
 
 const Resume = () => {
-  const renderCard = (data: Record<string, ExperienceOrQualification>) => {
-    return Object.keys(data).map((key, index) => {
-      const { year, name, company, institution, city } = data[key];
-      return (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
-          key={index}
-        >
-          <StyledCard variant="outlined">
-            <StyledCardContent>
-              <Typography sx={{ fontSize: 14, color: "white" }} gutterBottom>
-                {year}
-              </Typography>
-              <Typography sx={{ mb: 1.5, color: "white" }}>{name}</Typography>
-              <Typography variant="body2" sx={{ color: "white" }}>
-                {company || institution} <br />
-              </Typography>
-              <Typography variant="body2" sx={{ color: "white" }}>
-                {city}
-                <br />
-              </Typography>
-            </StyledCardContent>
-          </StyledCard>
-        </motion.div>
-      );
-    });
+  const isMobile = useMediaQuery('(max-width:600px)');
+
+  const renderExperience = () => {
+    return Object.keys(experienceData.experience).map((key, index) => (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+        key={index}
+      >
+        <StyledBox>
+          <StyledTypography variant="h6">{experienceData.experience[key as keyof typeof experienceData.experience].name}</StyledTypography>
+          <StyledTypography variant="subtitle1">{experienceData.experience[key as keyof typeof experienceData.experience].year}</StyledTypography>
+          <StyledTypography variant="body2">{experienceData.experience[key as keyof typeof experienceData.experience].company}</StyledTypography>
+          <StyledTypography variant="body2">{experienceData.experience[key as keyof typeof experienceData.experience].city}</StyledTypography>
+        </StyledBox>
+      </motion.div>
+    ));
   };
+  
+
+  const renderEducationQualifications = () => {
+    return Object.keys(educationQualification.course).map((key, index) => (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+        key={index}
+      >
+        <StyledBox>
+          <StyledTypography variant="h6">{educationQualification.course[key as keyof typeof educationQualification.course].name}</StyledTypography>
+          <StyledTypography variant="subtitle1">{educationQualification.course[key as keyof typeof educationQualification.course].year}</StyledTypography>
+          <StyledTypography variant="body2">{educationQualification.course[key as keyof typeof educationQualification.course].institution}</StyledTypography>
+          <StyledTypography variant="body2">{educationQualification.course[key as keyof typeof educationQualification.course].city}</StyledTypography>
+        </StyledBox>
+      </motion.div>
+    ));
+  };
+  
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "row",
-        height: "100vh",
-        backgroundImage: "linear-gradient(to right, #00008B, #00BFFF)",
-      }}
-    >
-      <Box sx={{ flex: "1", paddingRight: 1 }}>
-        <GradientTypography
-          variant="h3"
-          align="center"
-          sx={{ marginTop: "15%", marginBottom: "5%" }}
-        >
-          {titles.education}
-        </GradientTypography>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            width: "75%",
-            margin: "auto",
-          }}
-        >
-          {renderCard(educationQualification.course)}
-        </Box>
-      </Box>
-
-      <Box sx={{ flex: "1", paddingLeft: 1 }}>
-        <GradientTypography
-          variant="h3"
-          align="center"
-          sx={{ marginTop: "15%", marginBottom: "5%" }}
-        >
-          {titles.experience}
-        </GradientTypography>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            width: "75%",
-            margin: "auto",
-          }}
-        >
-          {renderCard(experienceData.experience)}
-        </Box>
-      </Box>
+    <Box display="flex" flexDirection={isMobile ? 'column' : 'row'} justifyContent="center" alignItems="center" minHeight="100vh" padding={3} sx={{ backgroundImage: "linear-gradient(to right, #00008B, #00BFFF)" }}>
+      <Stack flex="1" spacing={2} padding={3}>
+        <StyledTypography variant="h3" >{titles.education}</StyledTypography>
+        {renderEducationQualifications()}
+      </Stack>
+      <Stack flex="1" spacing={2}>
+        <StyledTypography variant="h3">{titles.experience}</StyledTypography>
+        {renderExperience()}
+      </Stack>
     </Box>
   );
 };

@@ -5,10 +5,3 @@ export interface Skill {
     description: string;
   }
 
-  export interface ExperienceOrQualification {
-    year: string;
-    name: string;
-    company?: string;
-    institution?: string;
-    city: string;
-  }

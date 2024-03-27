@@ -6,12 +6,43 @@ import {
   CardHeader,
   CardMedia,
   Typography,
+  styled,
 } from "@mui/material";
 import { Rating } from "@mui/material";
 import { Images } from "../datas/SkillsData";
 import SkillsModal from "../Modals/SkillsModal";
 import { Skill } from "../dataType/Type";
 import { motion } from "framer-motion"; 
+
+// Define types for CardMedia props including 'component', 'height', and 'alt'
+type CardMediaProps = React.ComponentProps<typeof CardMedia> & {
+  component?: React.ElementType;
+  height?: string;
+  alt?: string;
+};
+
+// Create styled component for CardMedia with wavy animation
+const WavyCardMedia = styled(CardMedia)<CardMediaProps>`
+  overflow: hidden;
+  position: relative;
+  transform-origin: 50% 50%;
+  &:hover {
+    animation: waveAnimation 1.5s infinite linear;
+  }
+  
+  @keyframes waveAnimation {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(15deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+`;
+
 
 const chunkArray = (arr: Skill[], size: number) => {
   const chunkedArr = [];
@@ -86,7 +117,8 @@ const Skills = () => {
                 }}
               >
                 <CardHeader title={skill.title} sx={{ textAlign: "center" }} />
-                <CardMedia
+                {/* Use the styled component for CardMedia */}
+                <WavyCardMedia
                   component="img"
                   height="194"
                   image={skill.image}

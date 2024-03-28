@@ -18,78 +18,87 @@ const Resume = () => {
   const isMobile = useMediaQuery('(max-width:600px)');
 
   const renderExperience = () => {
-    return Object.keys(experienceData.experience).map((key, index) => (
-      <Card
-        key={index}
-        sx={{
-          padding: 2,
-          marginBottom: 2,
-          backgroundColor: "#003366",
-          borderRadius: 10,
-          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-          transition: "background-color 0.5s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.3s ease-in-out",
-          textAlign: "center",
-          width: "90%",
-          maxWidth: "600px",
-          margin: "0 auto",
-          backgroundImage: "linear-gradient(to right, #00008B, #00BFFF)",
-          "&:hover": {
-            backgroundColor: "#0080ff",
-            transform: "scale(1.05)",
-            boxShadow: "0px 6px 15px rgba(0, 0, 0, 0.2)",
-          },
-        }}
-        component={motion.div}
-        initial={{ opacity: 0, x: 100 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.5, delay: 0.1 * index }}
-      >
-        <CardContent>
-          <StyledTypography variant="h6">{experienceData.experience[key as keyof typeof experienceData.experience].name}</StyledTypography>
-          <StyledTypography variant="subtitle1">{experienceData.experience[key as keyof typeof experienceData.experience].year}</StyledTypography>
-          <StyledTypography variant="body2">{experienceData.experience[key as keyof typeof experienceData.experience].company}</StyledTypography>
-          <StyledTypography variant="body2">{experienceData.experience[key as keyof typeof experienceData.experience].city}</StyledTypography>
-        </CardContent>
-      </Card>
-    ));
+    return Object.keys(experienceData.experience).map((key, index) => {
+      const experienceItem = experienceData.experience[key as keyof typeof experienceData.experience];
+      const startDate = new Date(experienceItem.year.split(' - ')[0]);
+      const endDate = key === 'thirdCompany' ? new Date() : new Date(experienceItem.year.split(' - ')[1]);
+      const duration = (endDate.getFullYear() - startDate.getFullYear()) * 12 + (endDate.getMonth() - startDate.getMonth());
+
+      return (
+        <motion.div
+          key={index}
+          whileHover={{
+            scale: 1.05,
+            transition: { duration: 0.3 }
+          }}
+        >
+          <Card
+            sx={{
+              padding: 2,
+              marginBottom: 2,
+              backgroundColor: "#003366",
+              borderRadius: 10,
+              boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+              textAlign: "center",
+              width: "90%",
+              maxWidth: "600px",
+              margin: "0 auto",
+              backgroundImage: "linear-gradient(to right, #00008B, #00BFFF)",
+            }}
+            component={motion.div}
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 * index }}
+          >
+            <CardContent>
+              <StyledTypography variant="h6">{experienceItem.name}</StyledTypography>
+              <StyledTypography variant="subtitle1">{key === 'thirdCompany' ? `June-2023 - Present (${duration} months)` : experienceItem.year}</StyledTypography>
+              <StyledTypography variant="body2">{experienceItem.company}</StyledTypography>
+              <StyledTypography variant="body2">{experienceItem.city}</StyledTypography>
+            </CardContent>
+          </Card>
+        </motion.div>
+      );
+    });
   };
-  
+
   const renderEducationQualifications = () => {
     return Object.keys(educationQualification.course).map((key, index) => (
-      <Card
+      <motion.div
         key={index}
-        sx={{
-          padding: 2,
-          marginBottom: 2,
-          backgroundColor: "#003366",
-          borderRadius: 10,
-          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-          transition: "background-color 0.5s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.3s ease-in-out",
-          textAlign: "center",
-          width: "90%",
-          maxWidth: "600px",
-          margin: "0 auto",
-          backgroundImage: "linear-gradient(to right, #00008B, #00BFFF)",
-          "&:hover": {
-            backgroundColor: "#0080ff",
-            transform: "scale(1.05)",
-            boxShadow: "0px 6px 15px rgba(0, 0, 0, 0.2)",
-          },
+        whileHover={{
+          scale: 1.05,
+          transition: { duration: 0.3 }
         }}
-        component={motion.div}
-        initial={{ opacity: 0, x: -100 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.5, delay: 0.1 * index }}
       >
-        <CardContent>
-          <StyledTypography variant="h6">{educationQualification.course[key as keyof typeof educationQualification.course].name}</StyledTypography>
-          <StyledTypography variant="subtitle1">{educationQualification.course[key as keyof typeof educationQualification.course].year}</StyledTypography>
-          <StyledTypography variant="body2">{educationQualification.course[key as keyof typeof educationQualification.course].institution}</StyledTypography>
-          <StyledTypography variant="body2">{educationQualification.course[key as keyof typeof educationQualification.course].city}</StyledTypography>
-        </CardContent>
-      </Card>
+        <Card
+          sx={{
+            padding: 2,
+            marginBottom: 2,
+            backgroundColor: "#003366",
+            borderRadius: 10,
+            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+            textAlign: "center",
+            width: "90%",
+            maxWidth: "600px",
+            margin: "0 auto",
+            backgroundImage: "linear-gradient(to right, #00008B, #00BFFF)",
+          }}
+          component={motion.div}
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 * index }}
+        >
+          <CardContent>
+            <StyledTypography variant="h6">{educationQualification.course[key as keyof typeof educationQualification.course].name}</StyledTypography>
+            <StyledTypography variant="subtitle1">{educationQualification.course[key as keyof typeof educationQualification.course].year}</StyledTypography>
+            <StyledTypography variant="body2">{educationQualification.course[key as keyof typeof educationQualification.course].institution}</StyledTypography>
+            <StyledTypography variant="body2">{educationQualification.course[key as keyof typeof educationQualification.course].city}</StyledTypography>
+          </CardContent>
+        </Card>
+      </motion.div>
     ));
   };
 

@@ -1,23 +1,7 @@
-import { Box, Stack, Typography, styled, useMediaQuery } from '@mui/material';
+import { Box, Stack, Typography, Card, CardContent, useMediaQuery, styled } from '@mui/material';
 import { experienceData } from "../datas/ExperienceData";
 import { motion } from "framer-motion";
 import { educationQualification } from "../datas/EducationData";
-
-const StyledBox = styled(motion.div)({
-  padding:20,
-  marginBottom: 2,
-  backgroundColor: "#003366",
-  transition: "background-color 0.5s ease-in-out, transform 0.5s ease-in-out",
-  textAlign: "center",
-  width: "90%",
-  maxWidth: "600px",
-  margin: "0 auto",
-  "&:hover": {
-    backgroundColor: "#0080ff",
-    backgroundImage: "linear-gradient(to right, #00008B, #00BFFF)",
-    transform: "scale(1.1)", 
-  },
-});
 
 const StyledTypography = styled(Typography)({
   marginBottom: 2,
@@ -35,35 +19,77 @@ const Resume = () => {
 
   const renderExperience = () => {
     return Object.keys(experienceData.experience).map((key, index) => (
-      <StyledBox
+      <Card
         key={index}
+        sx={{
+          padding: 2,
+          marginBottom: 2,
+          backgroundColor: "#003366",
+          borderRadius: 10,
+          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+          transition: "background-color 0.5s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.3s ease-in-out",
+          textAlign: "center",
+          width: "90%",
+          maxWidth: "600px",
+          margin: "0 auto",
+          backgroundImage: "linear-gradient(to right, #00008B, #00BFFF)",
+          "&:hover": {
+            backgroundColor: "#0080ff",
+            transform: "scale(1.05)",
+            boxShadow: "0px 6px 15px rgba(0, 0, 0, 0.2)",
+          },
+        }}
+        component={motion.div}
         initial={{ opacity: 0, x: 100 }}
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5, delay: 0.1 * index }}
       >
-         <StyledTypography variant="h6">{experienceData.experience[key as keyof typeof experienceData.experience].name}</StyledTypography>
+        <CardContent>
+          <StyledTypography variant="h6">{experienceData.experience[key as keyof typeof experienceData.experience].name}</StyledTypography>
           <StyledTypography variant="subtitle1">{experienceData.experience[key as keyof typeof experienceData.experience].year}</StyledTypography>
           <StyledTypography variant="body2">{experienceData.experience[key as keyof typeof experienceData.experience].company}</StyledTypography>
           <StyledTypography variant="body2">{experienceData.experience[key as keyof typeof experienceData.experience].city}</StyledTypography>
-      </StyledBox>
+        </CardContent>
+      </Card>
     ));
   };
   
   const renderEducationQualifications = () => {
     return Object.keys(educationQualification.course).map((key, index) => (
-      <StyledBox
+      <Card
         key={index}
+        sx={{
+          padding: 2,
+          marginBottom: 2,
+          backgroundColor: "#003366",
+          borderRadius: 10,
+          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+          transition: "background-color 0.5s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.3s ease-in-out",
+          textAlign: "center",
+          width: "90%",
+          maxWidth: "600px",
+          margin: "0 auto",
+          backgroundImage: "linear-gradient(to right, #00008B, #00BFFF)",
+          "&:hover": {
+            backgroundColor: "#0080ff",
+            transform: "scale(1.05)",
+            boxShadow: "0px 6px 15px rgba(0, 0, 0, 0.2)",
+          },
+        }}
+        component={motion.div}
         initial={{ opacity: 0, x: -100 }}
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5, delay: 0.1 * index }}
       >
-       <StyledTypography variant="h6">{educationQualification.course[key as keyof typeof educationQualification.course].name}</StyledTypography>
+        <CardContent>
+          <StyledTypography variant="h6">{educationQualification.course[key as keyof typeof educationQualification.course].name}</StyledTypography>
           <StyledTypography variant="subtitle1">{educationQualification.course[key as keyof typeof educationQualification.course].year}</StyledTypography>
           <StyledTypography variant="body2">{educationQualification.course[key as keyof typeof educationQualification.course].institution}</StyledTypography>
           <StyledTypography variant="body2">{educationQualification.course[key as keyof typeof educationQualification.course].city}</StyledTypography>
-      </StyledBox>
+        </CardContent>
+      </Card>
     ));
   };
 

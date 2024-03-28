@@ -1,4 +1,4 @@
-import { Modal, Box, Typography, Rating, IconButton } from "@mui/material";
+import { Modal, Box, Typography, IconButton, LinearProgress } from "@mui/material";
 import { Close } from "@mui/icons-material";
 import { Skill } from "../dataType/Type";
 
@@ -12,8 +12,6 @@ const SkillsModal: React.FC<SkillsModalProps> = ({
   selectedSkill,
   handleModalClose,
 }) => {
-  console.log(selectedSkill);
-  console.log(handleModalClose);
   return (
     <Modal
       open={selectedSkill !== null}
@@ -55,7 +53,10 @@ const SkillsModal: React.FC<SkillsModalProps> = ({
         <Typography variant="body1" id="skills-modal-description" gutterBottom>
           {selectedSkill?.description}
         </Typography>
-        <Rating value={selectedSkill?.rating} readOnly />
+        <Box sx={{ width: '100%',my: 2 }}>
+          <LinearProgress variant="determinate" value={selectedSkill?.progress} />
+          <Typography>{selectedSkill?.progress}%</Typography>
+        </Box>
       </Box>
     </Modal>
   );

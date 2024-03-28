@@ -3,46 +3,14 @@ import {
   Box,
   Card,
   CardContent,
-  CardHeader,
   CardMedia,
   Typography,
-  styled,
+  LinearProgress,
 } from "@mui/material";
-import { Rating } from "@mui/material";
 import { Images } from "../datas/SkillsData";
 import SkillsModal from "../Modals/SkillsModal";
 import { Skill } from "../dataType/Type";
-import { motion } from "framer-motion"; 
-
-// Define types for CardMedia props including 'component', 'height', and 'alt'
-type CardMediaProps = React.ComponentProps<typeof CardMedia> & {
-  component?: React.ElementType;
-  height?: string;
-  alt?: string;
-};
-
-// Create styled component for CardMedia with wavy animation
-const WavyCardMedia = styled(CardMedia)<CardMediaProps>`
-  overflow: hidden;
-  position: relative;
-  transform-origin: 50% 50%;
-  &:hover {
-    animation: waveAnimation 1.5s infinite linear;
-  }
-  
-  @keyframes waveAnimation {
-    0% {
-      transform: rotate(0deg);
-    }
-    50% {
-      transform: rotate(15deg);
-    }
-    100% {
-      transform: rotate(0deg);
-    }
-  }
-`;
-
+import { motion } from "framer-motion";
 
 const chunkArray = (arr: Skill[], size: number) => {
   const chunkedArr = [];
@@ -55,20 +23,19 @@ const chunkArray = (arr: Skill[], size: number) => {
 const Skills = () => {
   const [expandedIndices] = useState(Array(Images.length).fill(false));
   const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
-  const [chunksPerRow, setChunksPerRow] = useState<number>(4); // Default for desktop
+  const [chunksPerRow, setChunksPerRow] = useState<number>(4);
 
   useEffect(() => {
-    // Check viewport width and set chunk size accordingly
     const handleResize = () => {
-      const isMobileView = window.innerWidth < 768; // Example breakpoint for mobile
-      setChunksPerRow(isMobileView ? 1 : 4); // Change chunk size for mobile view
+      const isMobileView = window.innerWidth < 768;
+      setChunksPerRow(isMobileView ? 1 : 4);
     };
 
-    handleResize(); // Call once on component mount
-    window.addEventListener("resize", handleResize); // Add event listener for window resize
+    handleResize();
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize); // Cleanup on unmount
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -97,9 +64,9 @@ const Skills = () => {
         >
           {chunk.map((skill, index) => (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 50 }}
               transition={{ duration: 0.5 }}
               key={index}
               onClick={() => handleSkillClick(skill)}
@@ -107,43 +74,77 @@ const Skills = () => {
               <Card
                 sx={{
                   maxWidth: 300,
-                  backgroundColor: "#ddd",
-                  border: "2px solid transparent",
+                  backgroundColor: "#fff",
+                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                  borderRadius: "15px",
+                  overflow: "hidden",
                   transition: "transform 0.3s ease",
                   "&:hover": {
                     transform: "scale(1.05)",
-                    border: "2px solid #000",
+                    boxShadow: "0 6px 12px rgba(0, 0, 0, 0.15)",
                   },
                 }}
               >
-                <CardHeader title={skill.title} sx={{ textAlign: "center" }} />
-                {/* Use the styled component for CardMedia */}
-                <WavyCardMedia
+                <CardMedia
                   component="img"
-                  height="194"
+                  height="200"
+                  width="300"
                   image={skill.image}
                   alt={skill.title}
+                  sx={{
+                    objectFit: "cover",
+                    borderRadius: "15px",
+                    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                    transition: "transform 0.3s ease",
+                    "&:hover": {
+                      transform: "scale(1.05)",
+                    },
+                  }}
                 />
-                <CardContent>
+
+                <CardContent sx={{ paddingBottom: "16px" }}>
+                  <Typography
+                    variant="h5"
+                    sx={{
+                      fontWeight: 700,
+                      mb: 1,
+                      textAlign: "center",
+                      color: "#1a1a1a",
+                      fontFamily: "Roboto, sans-serif",
+                    }}
+                  >
+                    {skill.title}
+                  </Typography>
                   <Typography
                     variant="body2"
                     color="text.secondary"
-                    sx={{ overflowWrap: "anywhere", cursor: "pointer" }}
+                    sx={{
+                      mb: 2,
+                      textAlign: "center",
+                      fontFamily: "Roboto, sans-serif",
+                    }}
                   >
                     {expandedIndices[rowIndex * chunksPerRow + index]
                       ? skill.description
                       : skill.description.slice(0, 100) + "..."}
                   </Typography>
-                  <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
-                    <Typography variant="body2" color="text.secondary">
-                      Rating:
-                    </Typography>
-                    <Rating
-                      name={`rating-${rowIndex * chunksPerRow + index}`}
-                      value={skill.rating}
-                      readOnly
-                    />
-                  </Box>
+                  <LinearProgress
+                    variant="determinate"
+                    value={skill.progress}
+                    sx={{ mb: 1 }}
+                  />
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{
+                      textAlign: "center",
+                      fontWeight: 600,
+                      color: "#555",
+                      fontFamily: "Roboto, sans-serif",
+                    }}
+                  >
+                    Progress: ({Math.round(skill.progress)})%
+                  </Typography>
                 </CardContent>
               </Card>
             </motion.div>

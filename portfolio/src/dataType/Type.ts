@@ -1,7 +1,7 @@
 export interface Skill {
     image: string;
     title: string;
-    rating: number;
+    progress: number;
     description: string;
   }
 

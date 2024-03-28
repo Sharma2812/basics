@@ -4,7 +4,7 @@ import photo from "../assets/photo.jpeg";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import EmailIcon from "@mui/icons-material/Email";
-import { motion } from "framer-motion"; // Import motion from framer-motion
+import { motion } from "framer-motion"; 
 
 const About = () => {
   const handleLinkClick = (url: string) => {
